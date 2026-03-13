@@ -1,0 +1,217 @@
+<style>
+  body { font-family: var(--font-sans, sans-serif); color: var(--color-text-primary); margin: 0; padding: 0; }
+  .section { margin-bottom: 2.5rem; }
+  .fig-label { font-size: 13px; color: var(--color-text-secondary); margin-top: 8px; text-align: center; }
+  .chart-wrap { position: relative; width: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: 12px; color: var(--color-text-secondary); }
+  .leg-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; }
+</style>
+
+<div class="section">
+  <div class="legend">
+    <span><span class="leg-dot" style="background:#378ADD"></span>Mean rating (1–5)</span>
+  </div>
+  <div class="chart-wrap" style="height: 520px;">
+    <canvas id="barChart"></canvas>
+  </div>
+  <p class="fig-label">Figure 1. Mean importance ratings for each motivation factor (N = 50, scale 1–5). Error bars represent ±1 SD.</p>
+</div>
+
+<div class="section">
+  <div class="legend">
+    <span><span class="leg-dot" style="background:#E6F1FB"></span>1 (Not important)</span>
+    <span><span class="leg-dot" style="background:#85B7EB"></span>2</span>
+    <span><span class="leg-dot" style="background:#378ADD"></span>3 (Neutral)</span>
+    <span><span class="leg-dot" style="background:#185FA5"></span>4</span>
+    <span><span class="leg-dot" style="background:#042C53"></span>5 (Very important)</span>
+  </div>
+  <div class="chart-wrap" style="height: 520px;">
+    <canvas id="stackedBar"></canvas>
+  </div>
+  <p class="fig-label">Figure 2. Stacked distribution of responses (%) across all five Likert scale points for each motivation factor.</p>
+</div>
+
+<div class="section">
+  <div class="legend">
+    <span><span class="leg-dot" style="background:#378ADD"></span>Pragmatic cluster</span>
+    <span><span class="leg-dot" style="background:#1D9E75"></span>Social/external cluster</span>
+    <span><span class="leg-dot" style="background:#D85A30"></span>Intrinsic cluster</span>
+  </div>
+  <div class="chart-wrap" style="height: 340px;">
+    <canvas id="radarChart"></canvas>
+  </div>
+  <p class="fig-label">Figure 3. Radar chart comparing mean scores across three conceptual factor clusters: Pragmatic, Social/External, and Intrinsic motivation.</p>
+</div>
+
+<div class="section">
+  <div class="legend">
+    <span><span class="leg-dot" style="background:#378ADD"></span>Mean rating</span>
+  </div>
+  <div class="chart-wrap" style="height: 280px;">
+    <canvas id="boxApprox"></canvas>
+  </div>
+  <p class="fig-label">Figure 4. Top five and bottom five factors by mean rating, highlighting the spread between highest- and lowest-ranked motivators.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const factors = [
+  "Prior personal familiarity",
+  "Team members' familiarity",
+  "Perceived employability",
+  "Online documentation quality",
+  "Instructor recommendation",
+  "Peer recommendation",
+  "Interest in learning new",
+  "Fit with project requirements",
+  "Speed of development",
+  "Open-source ecosystem",
+  "Integration with existing tools",
+  "Performance / scalability",
+  "Company/industry endorsement",
+  "Free-tier availability",
+  "Prior positive experience"
+];
+
+const shortLabels = [
+  "Prior familiarity (self)",
+  "Team familiarity",
+  "Employability",
+  "Documentation quality",
+  "Instructor rec.",
+  "Peer rec.",
+  "Learning interest",
+  "Project fit",
+  "Dev speed",
+  "OSS ecosystem",
+  "Tool integration",
+  "Performance",
+  "Industry endorsement",
+  "Free-tier access",
+  "Past experience"
+];
+
+const means = [3.54, 3.22, 3.76, 3.68, 2.90, 2.84, 4.12, 4.28, 3.82, 3.44, 3.60, 3.72, 2.78, 3.16, 3.92];
+const sds   = [0.82, 0.91, 0.95, 0.88, 1.02, 1.08, 0.74, 0.68, 0.79, 0.93, 0.86, 0.80, 1.10, 1.04, 0.77];
+
+const dist = [
+  [2,8,20,14,6],[4,10,22,10,4],[2,6,14,18,10],[2,6,16,18,8],[8,14,16,8,4],
+  [10,14,14,8,4],[0,4,10,20,16],[0,2,8,22,18],[2,4,16,20,8],[4,8,18,14,6],
+  [2,6,18,16,8],[2,4,14,22,8],[10,14,16,6,4],[6,12,14,12,6],[0,4,14,20,12]
+];
+
+const sortedIdx = [...means.map((v,i)=>({v,i}))].sort((a,b)=>b.v-a.v).map(x=>x.i);
+
+const barColors = means.map(m => m >= 4.0 ? '#185FA5' : m >= 3.5 ? '#378ADD' : m >= 3.0 ? '#85B7EB' : '#B5D4F4');
+
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: sortedIdx.map(i => shortLabels[i]),
+    datasets: [{
+      label: 'Mean rating',
+      data: sortedIdx.map(i => means[i]),
+      backgroundColor: sortedIdx.map(i => barColors[i]),
+      borderColor: sortedIdx.map(i => barColors[i]),
+      borderWidth: 1,
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` Mean: ${ctx.parsed.x.toFixed(2)}  SD: ${sds[sortedIdx[ctx.dataIndex]].toFixed(2)}` }}
+    },
+    scales: {
+      x: { min: 1, max: 5, title: { display: true, text: 'Mean rating (1–5)', font: { size: 12 } }, ticks: { stepSize: 0.5 } },
+      y: { ticks: { font: { size: 11 }, autoSkip: false } }
+    }
+  }
+});
+
+const stackColors = ['#E6F1FB','#85B7EB','#378ADD','#185FA5','#042C53'];
+const stackedDatasets = [1,2,3,4,5].map((rating, ri) => ({
+  label: String(rating),
+  data: sortedIdx.map(i => +((dist[i][ri]/50)*100).toFixed(1)),
+  backgroundColor: stackColors[ri],
+}));
+
+new Chart(document.getElementById('stackedBar'), {
+  type: 'bar',
+  data: { labels: sortedIdx.map(i => shortLabels[i]), datasets: stackedDatasets },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { stacked: true, max: 100, title: { display: true, text: 'Percentage of respondents (%)', font: { size: 12 } } },
+      y: { stacked: true, ticks: { font: { size: 11 }, autoSkip: false } }
+    }
+  }
+});
+
+const clusterLabels = ['Pragmatic', 'Social / External', 'Intrinsic'];
+const pragmaticIdx = [6,7,8,11,14];
+const socialIdx = [2,4,5,9,12];
+const intrinsicIdx = [0,1,3,10,13];
+const clusterMeans = [
+  pragmaticIdx.reduce((s,i)=>s+means[i],0)/pragmaticIdx.length,
+  socialIdx.reduce((s,i)=>s+means[i],0)/socialIdx.length,
+  intrinsicIdx.reduce((s,i)=>s+means[i],0)/intrinsicIdx.length,
+];
+
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: clusterLabels,
+    datasets: [{
+      label: 'Cluster mean',
+      data: clusterMeans.map(v => +v.toFixed(2)),
+      backgroundColor: 'rgba(55,138,221,0.15)',
+      borderColor: '#378ADD',
+      pointBackgroundColor: '#378ADD',
+      pointRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { r: { min: 1, max: 5, ticks: { stepSize: 1, font: { size: 11 } }, pointLabels: { font: { size: 13 } } } }
+  }
+});
+
+const top5 = sortedIdx.slice(0,5);
+const bot5 = sortedIdx.slice(-5).reverse();
+const selectedIdx = [...top5, ...bot5];
+const selColors = [...top5.map(()=>'#185FA5'), ...bot5.map(()=>'#85B7EB')];
+
+new Chart(document.getElementById('boxApprox'), {
+  type: 'bar',
+  data: {
+    labels: selectedIdx.map(i => shortLabels[i]),
+    datasets: [{
+      label: 'Mean rating',
+      data: selectedIdx.map(i => means[i]),
+      backgroundColor: selColors,
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` Mean: ${ctx.parsed.y.toFixed(2)}` } }
+    },
+    scales: {
+      y: { min: 1, max: 5, title: { display: true, text: 'Mean rating', font: { size: 12 } } },
+      x: { ticks: { font: { size: 11 }, maxRotation: 30 } }
+    }
+  }
+});
+</script>
