@@ -2,7 +2,7 @@
 
 **Marcus T. Heller**¹, **Priya Sundaram**², **James K. Osei**¹
 
-¹ Department of Computer Science, Northgate University  
+¹ Department of Computer Science, Northgate University
 ² School of Information Science, Lakeridge Institute of Technology
 
 *Correspondence: m.heller@cs.northgate.edu*
@@ -81,23 +81,23 @@ We computed descriptive statistics (mean and standard deviation) for each item. 
 
 Table 1 reports descriptive statistics for all 15 items, sorted by mean rating in descending order.
 
-| Rank | Motivation Factor | M | SD |
-|------|-------------------|---|----|
-| 1 | Perceived fit with project's technical requirements | 4.28 | 0.68 |
-| 2 | Interest in learning something new | 4.12 | 0.74 |
-| 3 | Prior positive experience in a personal or academic project | 3.92 | 0.77 |
-| 4 | Speed of development / productivity | 3.82 | 0.79 |
-| 5 | Performance or scalability of the technology | 3.72 | 0.80 |
-| 6 | Perceived employability / job-market relevance | 3.76 | 0.95 |
-| 7 | Integration with other tools or APIs already in use | 3.60 | 0.86 |
-| 8 | Prior personal familiarity with the technology | 3.54 | 0.82 |
-| 9 | Open-source community size and ecosystem | 3.44 | 0.93 |
-| 10 | Quality or quantity of online documentation and tutorials | 3.68 | 0.88 |
-| 11 | Team members' familiarity with the technology | 3.22 | 0.91 |
-| 12 | Availability of free-tier hosting or tooling | 3.16 | 1.04 |
-| 13 | Recommendation from instructor or course materials | 2.90 | 1.02 |
-| 14 | Recommendation from peers or classmates | 2.84 | 1.08 |
-| 15 | Company or industry endorsement (e.g., backed by Google, Meta) | 2.78 | 1.10 |
+| Rank | Motivation Factor                                              | M    | SD   |
+| ---- | -------------------------------------------------------------- | ---- | ---- |
+| 1    | Perceived fit with project's technical requirements            | 4.28 | 0.68 |
+| 2    | Interest in learning something new                             | 4.12 | 0.74 |
+| 3    | Prior positive experience in a personal or academic project    | 3.92 | 0.77 |
+| 4    | Speed of development / productivity                            | 3.82 | 0.79 |
+| 5    | Performance or scalability of the technology                   | 3.72 | 0.80 |
+| 6    | Perceived employability / job-market relevance                 | 3.76 | 0.95 |
+| 7    | Integration with other tools or APIs already in use            | 3.60 | 0.86 |
+| 8    | Prior personal familiarity with the technology                 | 3.54 | 0.82 |
+| 9    | Open-source community size and ecosystem                       | 3.44 | 0.93 |
+| 10   | Quality or quantity of online documentation and tutorials      | 3.68 | 0.88 |
+| 11   | Team members' familiarity with the technology                  | 3.22 | 0.91 |
+| 12   | Availability of free-tier hosting or tooling                   | 3.16 | 1.04 |
+| 13   | Recommendation from instructor or course materials             | 2.90 | 1.02 |
+| 14   | Recommendation from peers or classmates                        | 2.84 | 1.08 |
+| 15   | Company or industry endorsement (e.g., backed by Google, Meta) | 2.78 | 1.10 |
 
 *Table 1. Descriptive statistics for all 15 motivation factors (N = 50), sorted by mean importance rating.*
 
@@ -109,11 +109,11 @@ Items with the highest standard deviations—company/industry endorsement (SD = 
 
 Grouping items into the three conceptual clusters described in Section 3.1 reveals a clear ordering:
 
-| Cluster | Items (n) | Cluster Mean |
-|---------|-----------|-------------|
-| Pragmatic | 5 | 3.86 |
-| Intrinsic | 5 | 3.68 |
-| Social / External | 5 | 3.14 |
+| Cluster           | Items (n) | Cluster Mean |
+| ----------------- | --------- | ------------ |
+| Pragmatic         | 5         | 3.86         |
+| Intrinsic         | 5         | 3.68         |
+| Social / External | 5         | 3.14         |
 
 *Table 2. Mean ratings by conceptual cluster.*
 
