@@ -3,7 +3,10 @@
 \PassOptionsToPackage{hyphens}{url}
 \documentclass[
 ]{article}
+
 \usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
@@ -152,7 +155,7 @@ concludes.
 
 \subsection{2. Related Work}\label{related-work}
 
-\subsubsection{2.1 Technology Acceptance in Professional
+\subsection{2.1 Technology Acceptance in Professional
 Settings}\label{technology-acceptance-in-professional-settings}
 
 The Technology Acceptance Model {[}Davis 1989{]} posits that perceived
@@ -227,7 +230,7 @@ States. Recruitment was conducted via email through department mailing
 lists. Inclusion criteria required that participants (a) were currently
 enrolled in a graduate CS program and (b) had completed at least one
 project in which they made an independent technology selection decision.
-Fifty graduate students completed the survey (31 male, 17 female, 2
+Fifty one graduate students completed the survey (32 male, 17 female, 2
 non-binary/other). Participants ranged in age from 22 to 34 (M = 25.4,
 SD = 2.7). All participation was voluntary and no compensation was
 provided.
@@ -305,9 +308,7 @@ SD
 50), sorted by mean importance rating.}
 
 \begin{figure}
-% \includepdf[pages=-]{fig1_mean_ratings.pdf}
-% \includegraphics[width=\textwidth]{fig1_mean_ratings.pdf}
-\includegraphics{fig1_mean_ratings.pdf}
+\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{fig1_mean_ratings.pdf}}%
 \end{figure}
 
 \emph{Figure 1. Mean importance ratings for each motivation factor (N = 50, scale 1-5), ranked in descending order.}
@@ -367,8 +368,6 @@ slightly bimodal distributions, suggesting that opinion on these factors
 is genuinely divided. The bimodal character of these items may reflect
 student subpopulations with differing orientations toward career
 planning versus purely technical decision-making.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{5. Discussion}\label{discussion}
 
