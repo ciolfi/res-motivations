@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 300" width="340" height="300">
+  <rect width="340" height="300" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="170" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#222">Mean scores by motivational cluster</text>
+  <text x="170" y="25" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#555">(N = 50, scale 1–5)</text>
+
+  <!-- radar center=(170,160), max r=90 for score=5 -->
+  <!-- r = (score-1)/4 * 90 -->
+  <!-- axes at 270deg (top), 30deg (bottom-right), 150deg (bottom-left) -->
+  <!-- top: (170, 160-90)=(170,70) -->
+  <!-- bottom-right: (170+90*sin60, 160+90*cos60)=(170+77.9,160+45)=(247.9,205) -->
+  <!-- bottom-left:  (170-77.9, 205)=(92.1,205) -->
+
+  <!-- grid rings at score 2,3,4,5 -->
+  <!-- score2: r=22.5 -->
+  <polygon points="170,137.5 189.5,194.75 150.5,194.75" fill="none" stroke="#eee" stroke-width="0.8"/>
+  <!-- score3: r=45 -->
+  <polygon points="170,115 209,182.5 131,182.5" fill="none" stroke="#eee" stroke-width="0.8"/>
+  <!-- score4: r=67.5 -->
+  <polygon points="170,92.5 228.5,170.25 111.5,170.25" fill="none" stroke="#ddd" stroke-width="0.8"/>
+  <!-- score5: r=90 -->
+  <polygon points="170,70 247.9,205 92.1,205" fill="none" stroke="#ccc" stroke-width="1"/>
+
+  <!-- axis lines -->
+  <line x1="170" y1="160" x2="170"   y2="70"  stroke="#bbb" stroke-width="0.8"/>
+  <line x1="170" y1="160" x2="247.9" y2="205" stroke="#bbb" stroke-width="0.8"/>
+  <line x1="170" y1="160" x2="92.1"  y2="205" stroke="#bbb" stroke-width="0.8"/>
+
+  <!-- scale labels on top axis -->
+  <text x="174" y="138" font-family="sans-serif" font-size="7" fill="#bbb">2</text>
+  <text x="174" y="116" font-family="sans-serif" font-size="7" fill="#bbb">3</text>
+  <text x="174" y="93"  font-family="sans-serif" font-size="7" fill="#bbb">4</text>
+  <text x="174" y="71"  font-family="sans-serif" font-size="7" fill="#bbb">5</text>
+
+  <!-- data polygon -->
+  <!-- Pragmatic 3.86: r=(2.86/4)*90=64.35 → (170, 160-64.35)=(170,95.65) -->
+  <!-- Social 3.14: r=(2.14/4)*90=48.15 → (170+48.15*sin60, 160+48.15*cos60)=(170+41.7,160+24.1)=(211.7,184.1) -->
+  <!-- Intrinsic 3.68: r=(2.68/4)*90=60.3 → (170-60.3*sin60, 160+60.3*cos60)=(170-52.2,160+30.15)=(117.8,190.15) -->
+  <polygon points="170,95.65 211.7,184.1 117.8,190.15"
+           fill="rgba(55,138,221,0.15)" stroke="#378ADD" stroke-width="2"/>
+  <circle cx="170"   cy="95.65"  r="4" fill="#378ADD"/>
+  <circle cx="211.7" cy="184.1"  r="4" fill="#378ADD"/>
+  <circle cx="117.8" cy="190.15" r="4" fill="#378ADD"/>
+
+  <!-- cluster labels -->
+  <text x="170" y="58"  text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1a4f8a">Pragmatic</text>
+  <text x="170" y="48"  text-anchor="middle" font-family="sans-serif" font-size="8" fill="#555">M = 3.86</text>
+
+  <text x="262" y="188" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1a4f8a">Social/</text>
+  <text x="262" y="199" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1a4f8a">External</text>
+  <text x="262" y="210" font-family="sans-serif" font-size="8" fill="#555">M = 3.14</text>
+
+  <text x="78"  y="188" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1a4f8a">Intrinsic</text>
+  <text x="78"  y="199" text-anchor="end" font-family="sans-serif" font-size="8" fill="#555">M = 3.68</text>
+
+  <text x="170" y="280" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#aaa">Outer ring = 5.0; centre = 1.0</text>
+</svg>
